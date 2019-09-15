@@ -21,7 +21,7 @@ export default class App extends Component {
             <div>
                 <Menu />
                 <Home content={this.state.content}/>
-                <div id="bottom">
+                <div id="bottom">  
                     <a href="https://facebook.com/ArtME15/" class="fa fa-facebook"></a>
                     <a href="https://www.linkedin.com/in/megan-eisenhauer-97a923137" class="fa fa-linkedin"></a>
                     <a href="https://www.instagram.com/mefinearts17/?hl=en" class="fa fa-instagram"></a>
