@@ -3,7 +3,6 @@ using MEFineArts.Data.Persistence.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using static MEFineArts.Data.Persistence.Enums.DataEnums;
 
 namespace MEFineArts.Data.Persistence
 {
