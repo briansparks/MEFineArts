@@ -4,6 +4,8 @@ html, body {
     overflow-x: hidden;
     overflow-y: hidden;
     background-color: white;
+    margin: 0;
+    padding: 0;
 }
 
 #menu {
@@ -11,7 +13,8 @@ html, body {
     left: 0;
     top: 0;
     text-align: center;
-    position: fixed;
+    position: relative;
+    display: inline-block;
     background-color: #333;
 }
 
@@ -68,6 +71,18 @@ li a {
     left:0;
     bottom: 0;
     text-align:center;
+}
+
+#galleryParent {
+  display: inline-block;
+  position: relative;
+}
+
+.galleryArt {
+  padding-left: 25px;
+  padding-right: 25px;
+  max-height: 350px;
+  max-width: 350px;
 }
 
 .fa {

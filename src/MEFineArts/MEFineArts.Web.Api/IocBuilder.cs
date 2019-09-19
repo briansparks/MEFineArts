@@ -16,6 +16,7 @@ namespace MEFineArts.Web.Api
 
             var builder = new ContainerBuilder();
             builder.RegisterType<DataManager>().As<IDataManager>().SingleInstance();
+            builder.RegisterType<AuthorizationManager>().As<IAuthorizationManager>().SingleInstance();
             builder.RegisterType<MongoDBRepository>().As<IRepository>().WithParameter(new TypedParameter(typeof(string), mongoConnection)).SingleInstance();
 
             builder.Populate(services);

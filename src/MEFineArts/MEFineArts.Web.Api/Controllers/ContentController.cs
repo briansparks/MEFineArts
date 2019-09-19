@@ -11,18 +11,38 @@ namespace MEFineArts.Web.Api.Controllers
     [ApiController]
     public class ContentController : ControllerBase
     {
-        private IDataManager _dataManager;
+        private IDataManager dataManager;
+        private IAuthorizationManager authorizationManager;
 
-        public ContentController(IDataManager argDataManager)
+        public ContentController(IDataManager argDataManager, IAuthorizationManager argAuthorizationManager)
         {
-            _dataManager = argDataManager;
+            dataManager = argDataManager;
+            authorizationManager = argAuthorizationManager;
         }
 
         [EnableCors("CorsPolicy")]
         [HttpGet]
         public async Task<ActionResult<List<Content>>> GetContent()
         {
-            return await _dataManager.GetContent();
+            return await dataManager.GetContent();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> InsertOrUpdateContent(string title, string page, string contentType, string value)
+        {
+            //TODO: Check for the access token in the header, if they have it, let them do the upsert.  If they don't, return unauthorized;
+            Request.Headers.TryGetValue("accessToken", out var accessToken);
+
+            if (!await authorizationManager.TryValidateAccessToken(accessToken))
+            {
+                return Unauthorized();
+            }
+            else
+            {
+                var result = await dataManager.InsertOrUpdateContent(title, page, contentType, value);
+            }
+
+            return Ok();
         }
     }
 }

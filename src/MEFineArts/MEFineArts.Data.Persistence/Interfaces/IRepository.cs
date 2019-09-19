@@ -9,5 +9,7 @@ namespace MEFineArts.Data.Persistence.Interfaces
     {
         Task<Guid?> GetUser(string userName, string password);
         Task<List<Content>> GetContent();
+        Task<string> InsertOrUpdateContent(Content content);
+        Task<bool> TryValidateAccessToken(string accessToken);
     }
 }
