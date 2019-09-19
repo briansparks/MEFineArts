@@ -9,5 +9,6 @@ namespace MEFineArts.Data.Persistence.Interfaces
     {
         Task<Guid?> GetUser(string userName, string password);
         Task<List<Content>> GetContent();
+        Task<string> InsertOrUpdateContent(string title, string page, string contentType, string value);
     }
 }

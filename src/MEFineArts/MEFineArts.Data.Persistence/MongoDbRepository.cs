@@ -47,5 +47,23 @@ namespace MEFineArts.Data.Persistence
 
             return result;
         }
+
+        public async Task<string> InsertOrUpdateContent(Content content)
+        {
+            var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<Content>(ContentCollection);
+
+            var result = await collection.ReplaceOneAsync(x => x.ContentId == content.ContentId, content, new UpdateOptions() { IsUpsert = true });
+
+            return result.UpsertedId?.ToString();
+        }
+
+        public async Task<bool> TryValidateAccessToken(string accessToken)
+        {
+            var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<User>(UsersCollection);
+
+            var users = await collection.Find(x => x.AccessToken.ToString() == accessToken).ToListAsync();
+
+            return users.Any();
+        }
     }
 }
