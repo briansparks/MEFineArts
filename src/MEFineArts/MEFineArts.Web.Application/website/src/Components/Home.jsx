@@ -8,8 +8,8 @@ export default class Home extends Component {
 
         return(
             <div>
-                <h2 id="homeTitle">{title}</h2>
                 <div id="image-body">
+                    <h2 id="homeTitle">{title}</h2>
                     <img id="homePageImage" src={image} />
                 </div>
             </div>

@@ -12,12 +12,50 @@ export default class Gallery extends Component {
     }
 
     render() {
+        let imageRows = [];
+        for (var i = 0; i <= this.state.galleryImages.length; i+=3) {
+            let imageRow = [];
+            imageRow.push(this.state.galleryImages[i]);
+            imageRow.push(this.state.galleryImages[i+1]);
+            imageRow.push(this.state.galleryImages[i+2]);
+            imageRows.push(imageRow);
+        }
+
+        console.log(imageRows);
+
+        let tableContent = BuildTable(imageRows);
+
         return (
             <div id="galleryParent">
-                {this.state.galleryImages.map(function(image) {
-                    return <img class="galleryArt" src={image.value} />
-                })}
+                <table id="galleryTable">
+                    <tbody>
+                        {tableContent}
+                    </tbody>
+                </table>
             </div>
         );
+    }
+}
+
+export function BuildTable(imageRows) {
+    return imageRows.map(function(imageRow) {
+        return (
+            <tr>
+                {BuildTableData(imageRow[0])}
+                {BuildTableData(imageRow[1])}
+                {BuildTableData(imageRow[2])}
+            </tr>
+        )
+    })
+}
+
+export function BuildTableData(image) {
+    if (image) {
+        return (
+            <td><img class="galleryArt" src={image.value}/></td>
+        )
+    }
+    else {
+        return null;
     }
 }
