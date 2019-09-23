@@ -30,7 +30,6 @@ namespace MEFineArts.Web.Api.Controllers
         [HttpPut]
         public async Task<ActionResult> InsertOrUpdateContent(string title, string page, string contentType, string value)
         {
-            //TODO: Check for the access token in the header, if they have it, let them do the upsert.  If they don't, return unauthorized;
             Request.Headers.TryGetValue("accessToken", out var accessToken);
 
             if (!await authorizationManager.TryValidateAccessToken(accessToken))
