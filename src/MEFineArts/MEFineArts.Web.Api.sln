@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MEFineArts.Web.Api", "MEFin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MEFineArts.Data.Persistence", "MEFineArts.Data.Persistence\MEFineArts.Data.Persistence.csproj", "{26859EED-4D70-4FB1-B1A0-A31AEA5DE83E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MEFineArts.Data.Logic", "MEFineArts.Data.Logic\MEFineArts.Data.Logic.csproj", "{6E9B9177-3913-4764-BD09-967BEE8F2A03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{26859EED-4D70-4FB1-B1A0-A31AEA5DE83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26859EED-4D70-4FB1-B1A0-A31AEA5DE83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26859EED-4D70-4FB1-B1A0-A31AEA5DE83E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E9B9177-3913-4764-BD09-967BEE8F2A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E9B9177-3913-4764-BD09-967BEE8F2A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E9B9177-3913-4764-BD09-967BEE8F2A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E9B9177-3913-4764-BD09-967BEE8F2A03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

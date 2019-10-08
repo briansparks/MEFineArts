@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using MEFineArts.Data.Logic;
+using MEFineArts.Data.Logic.Interfaces;
 using MEFineArts.Data.Persistence;
 using MEFineArts.Data.Persistence.Interfaces;
 using Microsoft.Extensions.Configuration;

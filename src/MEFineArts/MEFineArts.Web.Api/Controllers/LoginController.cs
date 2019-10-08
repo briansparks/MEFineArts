@@ -1,4 +1,5 @@
-﻿using MEFineArts.Data.Persistence.Interfaces;
+﻿using MEFineArts.Data.Logic.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -16,10 +17,10 @@ namespace MEFineArts.Web.Api.Controllers
             dataManager = argDataManager;
         }
 
+        [EnableCors("CorsPolicy")]
         [HttpGet("user")]
         public async Task<ActionResult<Guid>> GetUserAsync(string username, string password)
         {
-
             var accessToken = await dataManager.GetUser(username, password);
 
             if (accessToken == null)

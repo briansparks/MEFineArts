@@ -21,8 +21,6 @@ export default class Gallery extends Component {
             imageRows.push(imageRow);
         }
 
-        console.log(imageRows);
-
         let tableContent = BuildTable(imageRows);
 
         return (
