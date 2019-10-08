@@ -4,6 +4,7 @@ import Home from './Home';
 import Gallery from './Gallery';
 import Contact from './Contact';
 import About from './About';
+import CMS from './CMS';
 
 export default class Menu extends Component {
     constructor(props) {
@@ -40,6 +41,7 @@ export default class Menu extends Component {
                     <Route path="/About" render={(props) => <About {...props} content={this.props.content}/>}/>
                     <Route path="/Gallery" render={(props) => <Gallery {...props} content={this.props.content}/>}/>
                     <Route path="/Contact" render={(props) => <Contact {...props} content={this.props.content}/>}/>
+                    <Route path="/Admin" render={(props) => <CMS {...props} content={this.props.content}/>}/>
                 </div>
             </Router>
         );

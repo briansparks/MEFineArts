@@ -92,6 +92,45 @@ li a {
   margin-right:auto;
 }
 
+.adminImage {
+  height: 15%;
+  width: 15%;
+}
+
+#adminForm {
+  width: 80%;
+}
+
+#adminParent {
+  display: block;
+  position: absolute;
+  overflow-y:auto; 
+  height:78%; 
+  width:100%; 
+}
+
+#adminHeader {
+  font-size:2em;
+}
+
+#adminSection {
+  border-bottom: 2px solid black;
+}
+
+#loginHeader {
+  padding-left: 0%;
+  font-size: 30px;
+  text-align: center;
+  font-style: normal;
+}
+
+#loginForm {
+  text-align: center;
+  top: 30%;
+  left: 45%;
+  position: absolute;
+}
+
 #aboutImage {
   width:250px;
   height:400px;

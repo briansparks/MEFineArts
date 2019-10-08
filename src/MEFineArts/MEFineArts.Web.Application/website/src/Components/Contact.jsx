@@ -3,16 +3,20 @@ import { getContentItem } from './ContentManager';
 
 export default class Contact extends Component {
     render() {
+        const contactTitle = getContentItem("contact-title", this.props.content);
+        const email = getContentItem("contact-email", this.props.content);
+        const facebook = getContentItem("contact-facebook", this.props.content);
+        const linkedin = getContentItem("contact-linkedin", this.props.content);
         const contactImage = getContentItem("contact-image", this.props.content);
 
         return (
             <div>
                 <div id="leftContact">
-                    <h1 id="contactHeader">Contact Information:</h1>
+                    <h1 id="contactHeader">{contactTitle}</h1>
                     <div id="contactInfo">
-                        <b>Email:</b>MEFineArts17@gmail.com<br />
-                        <b>Facebook:</b> <a href="https://www.facebook.com/ArtME15/">https://www.facebook.com/ArtME15</a><br />
-                        <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/megan-eisenhauer-97a923137">https://www.linkedin.com/in/megan-eisenhauer</a><br />
+                        <b>Email:</b> {email}<br />
+                        <b>Facebook:</b> <a href={facebook}>{facebook}</a><br />
+                        <b>LinkedIn:</b> <a href={linkedin}>{linkedin}</a><br />
                     </div>
                 </div>
                 <div id="rightContact">
