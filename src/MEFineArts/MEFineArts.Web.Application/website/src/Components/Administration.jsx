@@ -29,7 +29,12 @@ export default class Administration extends Component {
 
         fetch(`https://localhost:5001/api/content`, {
             method: 'PUT',
-            body: this.props.content
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-Authorization-Access-Token': this.props.accessToken
+            },
+            body: JSON.stringify(this.props.content)
         })
         .then(x => x.json())
         .then((result) => {this.setState({ accessToken: result })})
@@ -65,6 +70,7 @@ export default class Administration extends Component {
                             <ContentItems content={this.state.contactContent} handleChange={this.handleChange}/>
                         </div>
                     <Button
+                        id="adminSubmitButton"
                         block
                         bsSize="large"
                         type="submit"
@@ -80,8 +86,8 @@ export default class Administration extends Component {
 function ContentItems(props) {
     return props.content.map(function(item) {
         if (item.contentType == "Copy") {
-            return <FormGroup controlid="contentitem">
-                       <p>{item.contentId}</p>
+            return <FormGroup controlid={item.contentId}>
+                       <p id="contentHeader">{item.contentId}</p>
                         <FormControl id="adminForm"
                             autoFocus
                             value={item.value}

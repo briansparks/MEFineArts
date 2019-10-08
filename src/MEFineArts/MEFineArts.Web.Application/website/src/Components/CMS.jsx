@@ -13,7 +13,13 @@ export default class CMS extends Component {
         return event => {
             event.preventDefault();
             
-            fetch(`https://localhost:5001/api/login/user?username=${username}&password=${password}`)
+            fetch(`https://localhost:5001/api/login/user?username=${username}&password=${password}`, {
+                method: 'GET',
+                headers : { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                   }
+            })
             .then(x => x.json())
             .then((result) => {this.setState({ accessToken: result })})
             .catch(console.log);  
