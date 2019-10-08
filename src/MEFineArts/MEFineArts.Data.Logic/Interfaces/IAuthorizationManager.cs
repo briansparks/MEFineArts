@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MEFineArts.Data.Persistence.Interfaces
+namespace MEFineArts.Data.Logic.Interfaces
 {
     public interface IAuthorizationManager
     {

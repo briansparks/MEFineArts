@@ -57,6 +57,17 @@ namespace MEFineArts.Data.Persistence
             return result.UpsertedId?.ToString();
         }
 
+        public async Task<int> InsertOrUpdateContent(List<Content> contentItems)
+        {
+            var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<Content>(ContentCollection);
+
+            var writeModels = contentItems.Select(item => new ReplaceOneModel<Content>(new ExpressionFilterDefinition<Content>(x => x.ContentId == item.ContentId), item) { IsUpsert = true });         
+
+            var result = await collection.BulkWriteAsync(writeModels);
+
+            return result.Upserts.Count;
+        }
+
         public async Task<bool> TryValidateAccessToken(string accessToken)
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<User>(UsersCollection);

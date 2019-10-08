@@ -1,5 +1,5 @@
-﻿using MEFineArts.Data.Persistence.DataModels;
-using MEFineArts.Data.Persistence.Interfaces;
+﻿using MEFineArts.Data.Logic.Interfaces;
+using MEFineArts.Data.Persistence.DataModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -27,7 +27,8 @@ namespace MEFineArts.Web.Api.Controllers
             return await dataManager.GetContent();
         }
 
-        [HttpPut]
+        [EnableCors("CorsPolicy")]
+        [HttpPut("{contentId}")]
         public async Task<ActionResult> InsertOrUpdateContent(string title, string page, string contentType, string value)
         {
             Request.Headers.TryGetValue("accessToken", out var accessToken);
@@ -39,6 +40,24 @@ namespace MEFineArts.Web.Api.Controllers
             else
             {
                 var result = await dataManager.InsertOrUpdateContent(title, page, contentType, value);
+            }
+
+            return Ok();
+        }
+
+        [EnableCors("CorsPolicy")]
+        [HttpPut]
+        public async Task<ActionResult> InsertOrUpdateContentList(List<Content> contentItems)
+        {
+            Request.Headers.TryGetValue("accessToken", out var accessToken);
+
+            if (!await authorizationManager.TryValidateAccessToken(accessToken))
+            {
+                return Unauthorized();
+            }
+            else
+            {
+                var result = await dataManager.InsertOrUpdateContent(contentItems);
             }
 
             return Ok();
