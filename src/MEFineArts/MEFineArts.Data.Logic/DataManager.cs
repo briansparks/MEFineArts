@@ -19,7 +19,7 @@ namespace MEFineArts.Data.Persistence
             logger = argLogger;
         }
 
-        public async Task<Guid?> GetUser(string userName, string password)
+        public async Task<string> GetUser(string userName, string password)
         {
             try
             {

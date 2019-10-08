@@ -93,6 +93,8 @@ li a {
 }
 
 .adminImage {
+  padding-top: 2%;
+  padding-right: 10px;
   height: 15%;
   width: 15%;
 }
@@ -114,7 +116,19 @@ li a {
 }
 
 #adminSection {
+  padding-left: 5%;
+  padding-bottom: 2%;
   border-bottom: 2px solid black;
+}
+
+#contentHeader {
+  font-weight: bold;
+}
+
+#adminSubmitButton {
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
 }
 
 #loginHeader {

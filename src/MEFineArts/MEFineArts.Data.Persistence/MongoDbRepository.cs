@@ -21,7 +21,7 @@ namespace MEFineArts.Data.Persistence
             mongoClient = new MongoClient(connectionString);
         }
 
-        public async Task<Guid?> GetUser(string userName, string password)
+        public async Task<string> GetUser(string userName, string password)
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<User>(UsersCollection);
             
@@ -65,14 +65,16 @@ namespace MEFineArts.Data.Persistence
 
             var result = await collection.BulkWriteAsync(writeModels);
 
-            return result.Upserts.Count;
+            return Convert.ToInt32(result.InsertedCount + result.ModifiedCount);
         }
 
         public async Task<bool> TryValidateAccessToken(string accessToken)
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<User>(UsersCollection);
 
-            var users = await collection.Find(x => x.AccessToken.ToString() == accessToken).ToListAsync();
+            var filter = Builders<User>.Filter.Eq(x => x.AccessToken, accessToken);
+
+            var users = await collection.Find(filter).ToListAsync();
 
             return users.Any();
         }

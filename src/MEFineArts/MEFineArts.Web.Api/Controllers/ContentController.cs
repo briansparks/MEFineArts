@@ -14,8 +14,12 @@ namespace MEFineArts.Web.Api.Controllers
         private IDataManager dataManager;
         private IAuthorizationManager authorizationManager;
 
+        private readonly string accessTokenHeader;
+
         public ContentController(IDataManager argDataManager, IAuthorizationManager argAuthorizationManager)
         {
+            accessTokenHeader = "X-Authorization-Access-Token";
+
             dataManager = argDataManager;
             authorizationManager = argAuthorizationManager;
         }
@@ -31,7 +35,7 @@ namespace MEFineArts.Web.Api.Controllers
         [HttpPut("{contentId}")]
         public async Task<ActionResult> InsertOrUpdateContent(string title, string page, string contentType, string value)
         {
-            Request.Headers.TryGetValue("accessToken", out var accessToken);
+            Request.Headers.TryGetValue(accessTokenHeader, out var accessToken);
 
             if (!await authorizationManager.TryValidateAccessToken(accessToken))
             {
@@ -47,9 +51,9 @@ namespace MEFineArts.Web.Api.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpPut]
-        public async Task<ActionResult> InsertOrUpdateContentList(List<Content> contentItems)
+        public async Task<ActionResult> InsertOrUpdateContentList([FromBody] List<Content> contentItems)
         {
-            Request.Headers.TryGetValue("accessToken", out var accessToken);
+            Request.Headers.TryGetValue(accessTokenHeader, out var accessToken);
 
             if (!await authorizationManager.TryValidateAccessToken(accessToken))
             {

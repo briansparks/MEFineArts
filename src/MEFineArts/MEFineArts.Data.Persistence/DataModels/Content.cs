@@ -6,7 +6,10 @@ namespace MEFineArts.Data.Persistence.DataModels
     [BsonIgnoreExtraElements]
     public class Content
     {
-        public ObjectId Id { get; set; }
+        [BsonIgnore]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string Page { get; set; }
         public string ContentId { get; set; }
         public string ContentType { get; set; }

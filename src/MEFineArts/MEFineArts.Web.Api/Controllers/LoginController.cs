@@ -19,7 +19,7 @@ namespace MEFineArts.Web.Api.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpGet("user")]
-        public async Task<ActionResult<Guid>> GetUserAsync(string username, string password)
+        public async Task<ActionResult<string>> GetUserAsync(string username, string password)
         {
             var accessToken = await dataManager.GetUser(username, password);
 

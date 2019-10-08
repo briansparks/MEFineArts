@@ -7,7 +7,7 @@ namespace MEFineArts.Data.Persistence.Interfaces
 {
     public interface IRepository
     {
-        Task<Guid?> GetUser(string userName, string password);
+        Task<string> GetUser(string userName, string password);
         Task<List<Content>> GetContent();
         Task<string> InsertOrUpdateContent(Content content);
         Task<int> InsertOrUpdateContent(List<Content> contentItems);
