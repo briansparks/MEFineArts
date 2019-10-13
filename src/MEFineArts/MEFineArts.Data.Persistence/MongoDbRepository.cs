@@ -21,7 +21,7 @@ namespace MEFineArts.Data.Persistence
             mongoClient = new MongoClient(connectionString);
         }
 
-        public async Task<string> GetUser(string userName, string password)
+        public async Task<string> GetUserAsync(string userName, string password)
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<User>(UsersCollection);
             
@@ -39,16 +39,16 @@ namespace MEFineArts.Data.Persistence
             return null;
         }
 
-        public async Task<List<Content>> GetContent()
+        public async Task<List<Content>> GetContentAsync()
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<Content>(ContentCollection);
 
-            var result = await collection.Find(Builders<Content>.Filter.Empty).ToListAsync();
+            var result = await collection.Find(Builders<Content>.Filter.Empty).SortByDescending(x => x.InsertDate).ToListAsync();
 
             return result;
         }
 
-        public async Task<string> InsertOrUpdateContent(Content content)
+        public async Task<string> InsertOrUpdateContentAsync(Content content)
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<Content>(ContentCollection);
 
@@ -57,7 +57,7 @@ namespace MEFineArts.Data.Persistence
             return result.UpsertedId?.ToString();
         }
 
-        public async Task<int> InsertOrUpdateContent(List<Content> contentItems)
+        public async Task<int> InsertOrUpdateContentAsync(List<Content> contentItems)
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<Content>(ContentCollection);
 
@@ -68,7 +68,7 @@ namespace MEFineArts.Data.Persistence
             return Convert.ToInt32(result.InsertedCount + result.ModifiedCount);
         }
 
-        public async Task<bool> TryValidateAccessToken(string accessToken)
+        public async Task<bool> TryValidateAccessTokenAsync(string accessToken)
         {
             var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<User>(UsersCollection);
 
@@ -77,6 +77,13 @@ namespace MEFineArts.Data.Persistence
             var users = await collection.Find(filter).ToListAsync();
 
             return users.Any();
+        }
+
+        public async Task DeleteContentAsync(string contentId)
+        {
+            var collection = mongoClient.GetDatabase(DatabaseName).GetCollection<Content>(ContentCollection);
+
+            await collection.DeleteOneAsync(x => x.ContentId == contentId);
         }
     }
 }

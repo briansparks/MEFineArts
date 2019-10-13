@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace MEFineArts.Data.Persistence.DataModels
 {
@@ -14,5 +15,6 @@ namespace MEFineArts.Data.Persistence.DataModels
         public string ContentId { get; set; }
         public string ContentType { get; set; }
         public string Value { get; set; }
+        public DateTime InsertDate { get; set; }
     }
 }
