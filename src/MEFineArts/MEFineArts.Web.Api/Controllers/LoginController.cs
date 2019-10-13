@@ -19,9 +19,9 @@ namespace MEFineArts.Web.Api.Controllers
         }
 
         [HttpGet("user")]
-        public async Task<ActionResult<string>> GetUserAsync(string username, string password)
+        public async Task<ActionResult<string>> GetUserAsyncAsync(string username, string password)
         {
-            var accessToken = await dataManager.GetUser(username, password);
+            var accessToken = await dataManager.GetUserAsync(username, password);
 
             if (accessToken == null)
             {

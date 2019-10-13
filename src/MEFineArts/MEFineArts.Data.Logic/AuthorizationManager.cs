@@ -16,14 +16,14 @@ namespace MEFineArts.Data.Logic
             logger = argLogger;
         }
 
-        public async Task<bool> TryValidateAccessToken(string accessToken)
+        public async Task<bool> TryValidateAccessTokenAsync(string accessToken)
         {
             if (string.IsNullOrWhiteSpace(accessToken))
             {
                 return false;
             }
 
-            var isTokenValid = await repository.TryValidateAccessToken(accessToken);
+            var isTokenValid = await repository.TryValidateAccessTokenAsync(accessToken);
 
             if (!isTokenValid)
             {

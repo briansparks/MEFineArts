@@ -4,6 +4,6 @@ namespace MEFineArts.Data.Logic.Interfaces
 {
     public interface IAuthorizationManager
     {
-        Task<bool> TryValidateAccessToken(string accessToken);
+        Task<bool> TryValidateAccessTokenAsync(string accessToken);
     }
 }

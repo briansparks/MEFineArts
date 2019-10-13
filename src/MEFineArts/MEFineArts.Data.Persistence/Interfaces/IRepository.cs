@@ -7,10 +7,11 @@ namespace MEFineArts.Data.Persistence.Interfaces
 {
     public interface IRepository
     {
-        Task<string> GetUser(string userName, string password);
-        Task<List<Content>> GetContent();
-        Task<string> InsertOrUpdateContent(Content content);
-        Task<int> InsertOrUpdateContent(List<Content> contentItems);
-        Task<bool> TryValidateAccessToken(string accessToken);
+        Task<string> GetUserAsync(string userName, string password);
+        Task<List<Content>> GetContentAsync();
+        Task<string> InsertOrUpdateContentAsync(Content content);
+        Task<int> InsertOrUpdateContentAsync(List<Content> contentItems);
+        Task<bool> TryValidateAccessTokenAsync(string accessToken);
+        Task DeleteContentAsync(string contentId);
     }
 }
