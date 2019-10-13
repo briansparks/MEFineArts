@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MEFineArts.Web.Api.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class ContentController : ControllerBase
@@ -24,14 +25,12 @@ namespace MEFineArts.Web.Api.Controllers
             authorizationManager = argAuthorizationManager;
         }
 
-        [EnableCors("CorsPolicy")]
         [HttpGet]
         public async Task<ActionResult<List<Content>>> GetContent()
         {
             return await dataManager.GetContent();
         }
 
-        [EnableCors("CorsPolicy")]
         [HttpPut("{contentId}")]
         public async Task<ActionResult> InsertOrUpdateContent(string title, string page, string contentType, string value)
         {
@@ -49,7 +48,6 @@ namespace MEFineArts.Web.Api.Controllers
             return Ok();
         }
 
-        [EnableCors("CorsPolicy")]
         [HttpPut]
         public async Task<ActionResult> InsertOrUpdateContentList([FromBody] List<Content> contentItems)
         {

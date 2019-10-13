@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MEFineArts.Web.Api.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
@@ -17,7 +18,6 @@ namespace MEFineArts.Web.Api.Controllers
             dataManager = argDataManager;
         }
 
-        [EnableCors("CorsPolicy")]
         [HttpGet("user")]
         public async Task<ActionResult<string>> GetUserAsync(string username, string password)
         {

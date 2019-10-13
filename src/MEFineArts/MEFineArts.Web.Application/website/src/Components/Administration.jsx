@@ -5,23 +5,7 @@ export default class Administration extends Component {
     constructor(props) {
         super(props);
 
-        const homePageContent = this.props.content.filter(function(item) {
-            return item.page == "Home";
-        });
-
-        const aboutPageContent = this.props.content.filter(function(item) {
-            return item.page == "About";
-        });
-
-        const galleryPageContent = this.props.content.filter(function(item) {
-            return item.page == "Gallery";
-        });
-
-        const contactPageContent = this.props.content.filter(function(item) {
-            return item.page == "Contact";
-        });
-
-        this.state = { accessToken: "", homeContent: homePageContent, aboutContent: aboutPageContent, galleryContent: galleryPageContent, contactContent: contactPageContent }
+        this.state = { accessToken: "", fullForm: this.props.content }
     }
 
     onFormSubmit = event => {
@@ -39,14 +23,19 @@ export default class Administration extends Component {
         .then(x => x.json())
         .then((result) => {this.setState({ accessToken: result })})
         .catch(console.log);  
-
-        console.log("form submitted!");
     }
 
     handleChange = event => {
-        // this.setState({
-        //   [event.target.id]: event.target.value
-        // });
+        let newForm = this.state.fullForm;
+        newForm.map(function(item) {
+            if (item.contentId === event.target.id) {
+                item.value = event.target.value;
+            }
+        })
+
+        this.setState({
+            fullForm: newForm
+        });
       }
 
     render() {
@@ -55,19 +44,19 @@ export default class Administration extends Component {
                 <form onSubmit={this.onFormSubmit}>
                     <h2 id="adminHeader">Home Page</h2>
                         <div id="adminSection">
-                            <ContentItems content={this.state.homeContent} handleChange={this.handleChange}/>
+                            <ContentItems content={this.state.fullForm} page={"Home"} handleChange={this.handleChange}/>
                         </div>
                     <h2 id="adminHeader">About Page</h2>
                         <div id="adminSection">
-                            <ContentItems content={this.state.aboutContent} handleChange={this.handleChange}/>
+                            <ContentItems content={this.state.fullForm} page={"About"} handleChange={this.handleChange}/>
                         </div>
                     <h2 id="adminHeader">Gallery Page</h2>
                         <div id="adminSection">
-                            <ContentItems content={this.state.galleryContent} handleChange={this.handleChange}/>
+                            <ContentItems content={this.state.fullForm} page={"Gallery"} handleChange={this.handleChange}/>
                         </div>
                     <h2 id="adminHeader">Contact Page</h2>
                         <div id="adminSection">
-                            <ContentItems content={this.state.contactContent} handleChange={this.handleChange}/>
+                            <ContentItems content={this.state.fullForm} page={"Contact"} handleChange={this.handleChange}/>
                         </div>
                     <Button
                         id="adminSubmitButton"
@@ -85,18 +74,21 @@ export default class Administration extends Component {
 
 function ContentItems(props) {
     return props.content.map(function(item) {
-        if (item.contentType == "Copy") {
-            return <FormGroup controlid={item.contentId}>
-                       <p id="contentHeader">{item.contentId}</p>
-                        <FormControl id="adminForm"
-                            autoFocus
-                            value={item.value}
-                            onChange={props.handleChange}
-                        />
-                    </FormGroup>
-        }
-        else if (item.contentType == "Image") {
-            return <img class="adminImage" src={item.value}></img>
+        if (props.page === item.page) {
+            if (item.contentType === "Copy") {
+                return <FormGroup controlid={item.contentId}>
+                           <p id="contentHeader">{item.contentId}</p>
+                            <FormControl class="adminForm"
+                                id={item.contentId}
+                                autoFocus
+                                value={item.value}
+                                onChange={props.handleChange}
+                            />
+                        </FormGroup>
+            }
+            else if (item.contentType == "Image") {
+                return <img class="adminImage" src={item.value}></img>
+            }
         }
     })
 }
