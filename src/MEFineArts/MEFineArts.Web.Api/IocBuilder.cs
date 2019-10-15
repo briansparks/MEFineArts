@@ -23,7 +23,7 @@ namespace MEFineArts.Web.Api
             builder.RegisterType<DataManager>().As<IDataManager>().SingleInstance();
             builder.RegisterType<AuthorizationManager>().As<IAuthorizationManager>().SingleInstance();
             builder.RegisterType<MongoDBRepository>().As<IRepository>().WithParameter(new TypedParameter(typeof(string), mongoConnection)).SingleInstance();
-            builder.RegisterType<ImageManager>().As<IImageManager>().WithParameters(new List<TypedParameter>() { new TypedParameter(typeof(string), s3KeyId), new TypedParameter(typeof(string), s3Key) }).SingleInstance();
+            builder.RegisterType<ImageManager>().As<IImageManager>().WithParameters(new [] { new NamedParameter("s3KeyId", s3KeyId), new NamedParameter("s3Key", s3Key) }).SingleInstance();
 
             builder.Populate(services);
             var container = builder.Build();

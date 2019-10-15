@@ -24,7 +24,7 @@ namespace MEFineArts.Data.Logic
         public ImageManager(string s3KeyId, string s3Key, ILogger<ImageManager> argLogger)
         {
             logger = argLogger;
-            s3Client = new AmazonS3Client(s3Key, s3Key, bucketRegion);
+            s3Client = new AmazonS3Client(s3KeyId, s3Key, bucketRegion);
         }
 
         public async Task<bool> TryUploadImageAsync(IFormFile file)
