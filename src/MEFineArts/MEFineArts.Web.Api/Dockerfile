@@ -6,6 +6,7 @@ EXPOSE 443
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY ["MEFineArts.Web.Api/MEFineArts.Web.Api.csproj", "MEFineArts.Web.Api/"]
+COPY ["MEFineArts.Data.Logic/MEFineArts.Data.Logic.csproj", "MEFineArts.Data.Logic/"]
 COPY ["MEFineArts.Data.Persistence/MEFineArts.Data.Persistence.csproj", "MEFineArts.Data.Persistence/"]
 RUN dotnet restore "MEFineArts.Web.Api/MEFineArts.Web.Api.csproj"
 COPY . .

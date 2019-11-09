@@ -4,6 +4,8 @@
   "description": "MEFineArts",
   "main": "./src/index.js",
   "scripts": {
+    "build": "react-scripts build",
+    "start": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.production.config.js --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js"
   },
@@ -16,9 +18,12 @@
     "react-images-upload": "^1.2.7",
     "react-router": "^5.0.1",
     "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.2.0",
     "react-slideshow-image": "^1.1.2",
-    "webpack": "^4.39.3",
     "webpack-dev-server": "^3.8.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -47,6 +52,18 @@
     ],
     "plugins": [
       "transform-object-rest-spread"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }
