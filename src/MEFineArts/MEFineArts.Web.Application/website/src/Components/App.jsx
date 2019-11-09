@@ -9,7 +9,7 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        fetch("https://localhost:5001/api/content")
+        fetch("http://localhost:8081/api/content")
         .then(x => x.json())
         .then((result) => {this.setState({ content: result })})
         .catch(console.log);        

@@ -13,7 +13,7 @@ export default class Administration extends Component {
     onFormSubmit = event => {
         event.preventDefault();
 
-        fetch(`https://localhost:5001/api/content`, {
+        fetch(`http://localhost:8081/api/content`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -49,7 +49,7 @@ export default class Administration extends Component {
             }
           }
 
-        axios.put(`https://localhost:5001/api/content/image`, formData, config)
+        axios.put(`http://localhost:8081/api/content/image`, formData, config)
             .then(this.setState({ imageUploadStatus : "success" }))
             .catch(err => {console.log(err); this.setState({ imageUploadStatus : "failed" });});  
     }  
@@ -59,7 +59,7 @@ export default class Administration extends Component {
             return item.contentId !== contentId;
         })
         
-        fetch(`https://localhost:5001/api/content/${contentId}`, {
+        fetch(`http://localhost:8081/api/content/${contentId}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',

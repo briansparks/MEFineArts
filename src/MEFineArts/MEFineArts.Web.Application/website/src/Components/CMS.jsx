@@ -12,8 +12,8 @@ export default class CMS extends Component {
     handleLogin(username, password) {
         return event => {
             event.preventDefault();
-            
-            fetch(`https://localhost:5001/api/login/user?username=${username}&password=${password}`, {
+
+            fetch(`http://localhost:8081/api/login/user?username=${username}&password=${password}`, {
                 method: 'GET',
                 headers : { 
                     'Content-Type': 'application/json',
@@ -21,12 +21,12 @@ export default class CMS extends Component {
                    }
             })
             .then(x => x.json())
-            .then((result) => {this.setState({ accessToken: result })})
+            .then(response => {            
+                if (response !== undefined && response !== null && response !== "") {
+                    this.setState({ loggedIn : true, accessToken: response })
+                }  
+            })
             .catch(console.log);  
-
-            if (this.state.accessToken !== undefined && this.state.accessToken !== null && this.state.accessToken !== "") {
-                this.setState({ loggedIn : true })
-            }  
         }
     }
 

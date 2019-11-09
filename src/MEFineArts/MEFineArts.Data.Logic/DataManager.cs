@@ -15,7 +15,7 @@ namespace MEFineArts.Data.Persistence
         private IRepository repository;
         private ILogger<DataManager> logger;
 
-        private const string publicImageUrlPrefix = "https://mefinearts.s3.amazonaws.com/Content/Images/";
+        private const string publicImageUrlPrefix = "https://mefinearts.s3.amazonaws.com/Content/Images/Gallery/";
 
         public DataManager(IRepository argRepository, ILogger<DataManager> argLogger)
         {

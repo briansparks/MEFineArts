@@ -9,7 +9,7 @@ export default class Home extends Component {
             <div>
                 <div id="homeBody">
                     <h2 id="homeTitle">{title}</h2>
-                    <img id="homePageImage" src="../src/Content/Images/home.jpg" />
+                    <img id="homePageImage" src="../Images/home.jpg" />
                 </div>
             </div>
         )
