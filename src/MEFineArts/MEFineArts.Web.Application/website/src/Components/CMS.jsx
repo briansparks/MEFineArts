@@ -14,11 +14,15 @@ export default class CMS extends Component {
             event.preventDefault();
 
             fetch(`http://localhost:8081/api/login/user?username=${username}&password=${password}`, {
-                method: 'GET',
-                headers : { 
+                method: 'POST',
+                headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                   }
+                   },
+                body: {
+                    'username': username,
+                    'password': password
+                }
             })
             .then(x => x.json())
             .then(response => {            
